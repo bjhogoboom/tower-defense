@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://4f7yax5vjte2"]
+
+[ext_resource type="Script" path="res://turret.gd" id="1_1rw5o"]
+[ext_resource type="Texture2D" uid="uid://bwvfahcuwfbal" path="res://turret.png" id="1_ijbc8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w643m"]
+radius = 81.0555
+
+[node name="Turret" type="Node2D"]
+script = ExtResource("1_1rw5o")
+
+[node name="Turret" type="Sprite2D" parent="."]
+texture = ExtResource("1_ijbc8")
+
+[node name="FocusArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FocusArea"]
+shape = SubResource("CircleShape2D_w643m")
+
+[connection signal="area_entered" from="FocusArea" to="." method="_on_focus_area_area_entered"]

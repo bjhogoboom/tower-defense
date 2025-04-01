@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp5o1s10k2uo1"]
+
+[ext_resource type="PackedScene" uid="uid://4f7yax5vjte2" path="res://turret.tscn" id="1_fpiem"]
+[ext_resource type="PackedScene" uid="uid://bs6xyy1xvma0l" path="res://enemy.tscn" id="2_u5c1h"]
+
+[node name="Main" type="Node"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+
+[node name="Turret" parent="." instance=ExtResource("1_fpiem")]
+position = Vector2(105, -1)
+
+[node name="Enemy" parent="." instance=ExtResource("2_u5c1h")]
+position = Vector2(-25, 3)
+speed = 25.0
