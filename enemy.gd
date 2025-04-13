@@ -1,3 +1,4 @@
+class_name Enemy
 extends Node2D
 
 @export var speed: float = 30.0
