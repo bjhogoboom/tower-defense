@@ -17,5 +17,11 @@ texture = ExtResource("1_ijbc8")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FocusArea"]
 shape = SubResource("CircleShape2D_w643m")
 
+[node name="FireRate" type="Timer" parent="."]
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(0, -8)
+
 [connection signal="area_entered" from="FocusArea" to="." method="_on_focus_area_area_entered"]
 [connection signal="area_exited" from="FocusArea" to="." method="_on_focus_area_area_exited"]
+[connection signal="timeout" from="FireRate" to="." method="_on_fire_rate_timeout"]
