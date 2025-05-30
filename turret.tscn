@@ -13,6 +13,7 @@ script = ExtResource("1_1rw5o")
 texture = ExtResource("1_ijbc8")
 
 [node name="FocusArea" type="Area2D" parent="."]
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FocusArea"]
 shape = SubResource("CircleShape2D_w643m")
