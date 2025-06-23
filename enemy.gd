@@ -1,10 +1,12 @@
 class_name Enemy
-extends Node2D
+extends Area2D
 
 @export var max_health: float = 50.0
 @export var speed: float = 30.0
 @onready var progress_bar: ProgressBar = $ProgressBar
 var health: float
+
+signal died(enemy: Enemy)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,4 +32,5 @@ func take_damage(damage: float) -> void:
 func on_health_changed():
 	progress_bar.value = health
 	if health <= 0.0:
+		died.emit(self)
 		queue_free()

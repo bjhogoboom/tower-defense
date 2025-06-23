@@ -1,9 +1,9 @@
 class_name Turret
 extends Node2D
 
-var focused_enemy: Node2D
+var focus_queue: Array[Node2D]
 var bullet_scene = preload("res://bullet.tscn")
-@onready var fire_rate = $FireRate
+@onready var fire_rate: Timer = $FireRate
 @onready var spawn_point = $SpawnPoint
 @onready var focus_area: Area2D = $FocusArea
 var mode: Mode = Mode.ACTIVE
@@ -14,6 +14,9 @@ enum Mode {PREVIEW, ACTIVE}
 func _ready() -> void:
 	pass
 
+func focused_enemy() -> Node2D:
+	if focus_queue.is_empty(): return null
+	return focus_queue.front()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -23,29 +26,31 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if !mode == Mode.ACTIVE: return
 
-	if focused_enemy:
-		point_at(focused_enemy.position)
+	if focused_enemy():
+		point_at(focused_enemy().global_position)
 
 func _on_focus_area_area_exited(area: Area2D) -> void:
-	focused_enemy = null
+	remove_from_focus_queue(area)
 	fire_rate.stop()
 
 func _on_focus_area_area_entered(area: Area2D) -> void:
 	if !mode == Mode.ACTIVE: return
-	focus_on(area)
+	add_to_focus_queue(area)
 
-func focus_on(area: Area2D) -> void:
-	focused_enemy = area
+func add_to_focus_queue(area: Area2D) -> void:
+	if area is Enemy:
+		area.died.connect(_on_enemy_died)
+	focus_queue.push_back(area)
 	fire_rate.start()
 
 func _on_fire_rate_timeout() -> void:
-	if focused_enemy:
-		shoot_at(focused_enemy.position)
+	if focused_enemy():
+		shoot()
 
 func point_at(point: Vector2):
 	rotation = point.angle_to_point(position) + Vector2.UP.angle()
 
-func shoot_at(point: Vector2):
+func shoot():
 	var bullet = bullet_scene.instantiate()
 	bullet.direction = rotation + Vector2.UP.angle()
 	bullet.spawn_position = spawn_point.global_position
@@ -57,6 +62,15 @@ func preview():
 
 func activate():
 	var enemies_in_area = focus_area.get_overlapping_areas()
-	if not enemies_in_area.is_empty():
-		focus_on(enemies_in_area[0])
+	for enemy in enemies_in_area:
+		add_to_focus_queue(enemy)
 	mode = Mode.ACTIVE
+
+func remove_from_focus_queue(enemy: Node2D):
+	focus_queue.erase(enemy)
+	if focus_queue.is_empty():
+		fire_rate.stop()
+	
+func _on_enemy_died(enemy: Node2D):
+	remove_from_focus_queue(enemy)
+	
