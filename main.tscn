@@ -24,7 +24,7 @@ speed = 25.0
 
 [node name="Spawner" parent="." node_paths=PackedStringArray("coin_purse") instance=ExtResource("5_ok400")]
 position = Vector2(-133, 0)
-spawn_delay = 3.0
+spawn_delay = 10.0
 coin_purse = NodePath("../CoinPurse")
 
 [node name="CoinPurse" type="Node" parent="."]
