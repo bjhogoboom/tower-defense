@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://vsxbhvn4qjl8"]
+
+[ext_resource type="Script" path="res://ui_layer.gd" id="1_5el8y"]
+[ext_resource type="PackedScene" uid="uid://56hlkk1meeaw" path="res://turret_store.tscn" id="1_qomet"]
+
+[node name="UILayer" type="CanvasLayer"]
+script = ExtResource("1_5el8y")
+
+[node name="UI Margin" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="UI" type="Control" parent="UI Margin"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="TurretStore" parent="UI Margin/UI" instance=ExtResource("1_qomet")]
+layout_mode = 1
+offset_top = -139.0
+offset_right = 74.0
+
+[node name="Label" type="Label" parent="UI Margin/UI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -86.0
+offset_bottom = 23.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 32
+text = "10000 Gold"
+
+[connection signal="turret_selected" from="UI Margin/UI/TurretStore" to="." method="_on_turret_store_turret_selected"]

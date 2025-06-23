@@ -56,7 +56,6 @@ func preview():
 	mode = Mode.PREVIEW
 
 func activate():
-	print("ACTIVATE!")
 	var enemies_in_area = focus_area.get_overlapping_areas()
 	if not enemies_in_area.is_empty():
 		focus_on(enemies_in_area[0])

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://grid.gd" id="1_fm13y"]
 [ext_resource type="PackedScene" uid="uid://4f7yax5vjte2" path="res://turret.tscn" id="1_fpiem"]
 [ext_resource type="PackedScene" uid="uid://bs6xyy1xvma0l" path="res://enemy.tscn" id="2_u5c1h"]
-[ext_resource type="PackedScene" uid="uid://5likb0he8k8h" path="res://turret_selector.tscn" id="4_wewfh"]
+[ext_resource type="PackedScene" uid="uid://vsxbhvn4qjl8" path="res://ui_layer.tscn" id="4_rfxcl"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_fm13y")
@@ -18,10 +18,6 @@ position = Vector2(-10, 23)
 position = Vector2(-106, -34)
 speed = 25.0
 
-[node name="TurretSelector" parent="." instance=ExtResource("4_wewfh")]
-offset_left = -145.0
-offset_top = 66.0
-offset_right = -145.0
-offset_bottom = 66.0
+[node name="UILayer" parent="." instance=ExtResource("4_rfxcl")]
 
-[connection signal="pressed" from="TurretSelector" to="." method="_on_turret_selector_pressed"]
+[connection signal="turret_selected" from="UILayer" to="." method="_on_ui_layer_turret_selected"]

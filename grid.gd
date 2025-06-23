@@ -22,7 +22,7 @@ func should_place_turret(event: InputEvent) -> bool:
 		and event.button_index == MOUSE_BUTTON_LEFT \
 		and selected_turret != null
 
-func _on_turret_selector_pressed() -> void:
+func _on_ui_layer_turret_selected() -> void:
 	selected_turret = turret_scene.instantiate()
 	selected_turret.preview()
 	add_child(selected_turret)

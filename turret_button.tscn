@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://5likb0he8k8h"]
+
+[ext_resource type="Texture2D" uid="uid://bwvfahcuwfbal" path="res://turret.png" id="1_bp73y"]
+
+[node name="TurretButton" type="TextureButton"]
+size_flags_vertical = 3
+texture_normal = ExtResource("1_bp73y")
+stretch_mode = 4

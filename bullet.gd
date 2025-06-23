@@ -17,7 +17,3 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	var velocity = Vector2(speed, 0).rotated(direction)
 	position += velocity * delta
-
-
-func _on_body_entered(body: Node2D) -> void:
-	print("bullet body entered")
