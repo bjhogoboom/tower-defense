@@ -26,7 +26,7 @@ layout_mode = 1
 offset_top = -139.0
 offset_right = 74.0
 
-[node name="Label" type="Label" parent="UI Margin/UI"]
+[node name="GoldLabel" type="Label" parent="UI Margin/UI"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -35,6 +35,6 @@ offset_left = -86.0
 offset_bottom = 23.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 32
-text = "10000 Gold"
+text = "Gold: 0"
 
 [connection signal="turret_selected" from="UI Margin/UI/TurretStore" to="." method="_on_turret_store_turret_selected"]

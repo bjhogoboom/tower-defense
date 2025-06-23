@@ -2,6 +2,7 @@ extends Node2D
 
 @export var enemy_scene: PackedScene
 @export var spawn_delay: float = 5
+@export var coin_purse: CoinPurse
 @onready var timer: Timer = $Timer
 @onready var preview_sprite: Sprite2D = $Sprite2D
 
@@ -19,8 +20,12 @@ func _process(delta: float) -> void:
 	pass
 	
 func spawn() -> void:
-	add_child(enemy_scene.instantiate())
+	var enemy: Enemy = enemy_scene.instantiate()
+	add_child(enemy)
+	enemy.died.connect(_on_enemy_died)
 	
+func _on_enemy_died(enemy: Enemy) -> void:
+	coin_purse.add_gold(10)
 
 func _on_timer_timeout() -> void:
 	spawn()
