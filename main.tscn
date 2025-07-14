@@ -1,11 +1,67 @@
-[gd_scene load_steps=7 format=3 uid="uid://dp5o1s10k2uo1"]
+[gd_scene load_steps=15 format=4 uid="uid://dp5o1s10k2uo1"]
 
 [ext_resource type="Script" path="res://grid.gd" id="1_fm13y"]
 [ext_resource type="PackedScene" uid="uid://4f7yax5vjte2" path="res://turret.tscn" id="1_fpiem"]
-[ext_resource type="PackedScene" uid="uid://bs6xyy1xvma0l" path="res://enemy.tscn" id="2_u5c1h"]
 [ext_resource type="PackedScene" uid="uid://vsxbhvn4qjl8" path="res://ui_layer.tscn" id="4_rfxcl"]
 [ext_resource type="PackedScene" uid="uid://y2y2mwcq600q" path="res://spawner.tscn" id="5_ok400"]
 [ext_resource type="Script" path="res://coin_purse.gd" id="6_mii76"]
+[ext_resource type="Texture2D" uid="uid://cvnet1slp3cf4" path="res://tileset2.png" id="7_cj2l7"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_aqppd"]
+vertices = PackedVector2Array(8, 8, -5, 8, -4.9375, -5.3125, 8, -5.4375)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-4.9375, -5.3125, 8, -5.4375, 8, 8, -5, 8)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_y880g"]
+vertices = PackedVector2Array(5.125, 8, -5.125, 8, -5, -8, 5, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-5, -8, 5, -8, 5.125, 8, -5.125, 8)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_jkh00"]
+vertices = PackedVector2Array(8, -4.375, 8, 4.5625, -8, 4.5625, -8, -4.625)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -4.625, 8, -4.375, 8, 4.5625, -8, 4.5625)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_bkvpj"]
+vertices = PackedVector2Array(8, 4.375, -4.3125, 4.25, -4.4375, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-4.4375, -8, 8, -8, 8, 4.375, -4.3125, 4.25)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_hihoo"]
+vertices = PackedVector2Array(4.5, -5.0625, 4.5, 8, -8, 8, -8, -5.125)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -5.125, 4.5, -5.0625, 4.5, 8, -8, 8)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_w4cjg"]
+vertices = PackedVector2Array(4.4375, 3.75, -8, 4, -8, -8, 4.5, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 4.5, -8, 4.4375, 3.75, -8, 4)])
+agent_radius = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e5em0"]
+resource_name = "Road"
+texture = ExtResource("7_cj2l7")
+1:1/0 = 0
+1:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_aqppd")
+2:1/0 = 0
+2:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_jkh00")
+3:1/0 = 0
+3:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_hihoo")
+1:2/0 = 0
+1:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_y880g")
+2:2/0 = 0
+2:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_bkvpj")
+3:2/0 = 0
+3:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_w4cjg")
+
+[sub_resource type="TileSet" id="TileSet_s8l6l"]
+navigation_layer_0/layers = 1
+sources/1 = SubResource("TileSetAtlasSource_e5em0")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_fm13y")
@@ -13,21 +69,27 @@ script = ExtResource("1_fm13y")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
 
-[node name="Turret" parent="." instance=ExtResource("1_fpiem")]
-position = Vector2(-10, 23)
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD3////AQACAAEAAAD4////AQACAAEAAAD5////AQACAAEAAAD6////AQACAAEAAAD7////AQADAAIAAAD7//7/AQABAAIAAAD7//3/AQABAAIAAAD7//z/AQABAAIAAAD7//v/AQABAAEAAAD8//v/AQACAAEAAAD9//v/AQACAAEAAAD+//v/AQADAAEAAAD+//z/AQABAAIAAAD+//3/AQABAAIAAAD+//7/AQABAAIAAAD///7/AQABAAEAAAAAAP7/AQACAAEAAAABAP7/AQACAAEAAAACAP7/AQADAAEAAAACAP//AQABAAIAAAACAAAAAQABAAIAAAACAAEAAQABAAIAAAACAAIAAQABAAIAAAACAAMAAQABAAIAAAACAAQAAQACAAIAAAADAAQAAQACAAEAAAAEAAQAAQACAAEAAAAFAAQAAQACAAEAAAAGAAQAAQACAAEAAAAHAAQAAQACAAEAAAAIAAQAAQACAAEAAAAKAAQAAQACAAEAAAAJAAQAAQACAAEAAAD2////AQACAAEAAAD1////AQACAAEAAAD+/wAAAQABAAIAAAD+/wEAAQABAAIAAAD+/wIAAQACAAIAAAD//wIAAQADAAIAAAD//wEAAQABAAIAAAD//wAAAQABAAIAAAD+////AQABAAIAAAD/////AQABAAIAAAA=")
+tile_set = SubResource("TileSet_s8l6l")
 
-[node name="Enemy" parent="." instance=ExtResource("2_u5c1h")]
-position = Vector2(-106, -34)
-speed = 25.0
+[node name="Turret" parent="." instance=ExtResource("1_fpiem")]
+position = Vector2(-18, 57)
+damage = 10.0
 
 [node name="UILayer" parent="." instance=ExtResource("4_rfxcl")]
 
-[node name="Spawner" parent="." node_paths=PackedStringArray("coin_purse") instance=ExtResource("5_ok400")]
-position = Vector2(-133, 0)
+[node name="Spawner" parent="." node_paths=PackedStringArray("coin_purse", "goal") instance=ExtResource("5_ok400")]
+position = Vector2(-154, -8)
 spawn_delay = 10.0
 coin_purse = NodePath("../CoinPurse")
+goal = NodePath("../Goal")
 
 [node name="CoinPurse" type="Node" parent="."]
 script = ExtResource("6_mii76")
+gold = 100
+
+[node name="Goal" type="Node2D" parent="."]
+position = Vector2(167, 73)
 
 [connection signal="turret_selected" from="UILayer" to="." method="_on_ui_layer_turret_selected"]

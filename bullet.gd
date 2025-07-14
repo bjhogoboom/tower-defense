@@ -1,6 +1,8 @@
+class_name Bullet
 extends Area2D
 
 @export var speed = 300.0
+@export var damage = 10.0
 var spawn_position: Vector2
 var spawn_rotation: float
 var direction: float

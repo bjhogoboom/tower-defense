@@ -6,6 +6,7 @@ var bullet_scene = preload("res://bullet.tscn")
 @onready var fire_rate: Timer = $FireRate
 @onready var spawn_point = $SpawnPoint
 @onready var focus_area: Area2D = $FocusArea
+@export var damage = 1.0
 var mode: Mode = Mode.ACTIVE
 
 enum Mode {PREVIEW, ACTIVE}
@@ -55,6 +56,7 @@ func shoot():
 	bullet.direction = rotation + Vector2.UP.angle()
 	bullet.spawn_position = spawn_point.global_position
 	bullet.spawn_rotation = global_rotation
+	bullet.damage = damage
 	get_parent().add_child(bullet)
 
 func preview():
