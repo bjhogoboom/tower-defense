@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://ymaeinj1remt"]
+
+[ext_resource type="Script" path="res://indicator.gd" id="1_41v3w"]
+[ext_resource type="Texture2D" uid="uid://dkybb5ofg7w74" path="res://White_Circle.png" id="1_exsyj"]
+[ext_resource type="Texture2D" uid="uid://ca3s33xe112p5" path="res://indicator.png" id="1_v4au0"]
+
+[node name="Indicator" type="Node2D"]
+script = ExtResource("1_41v3w")
+size = 1.0
+
+[node name="Mask" type="Sprite2D" parent="."]
+clip_children = 1
+z_index = 10
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_exsyj")
+
+[node name="Texture" type="Sprite2D" parent="Mask"]
+texture_repeat = 2
+scale = Vector2(10, 10)
+texture = ExtResource("1_v4au0")
+region_enabled = true
+region_rect = Rect2(0, 0, 120, 120)
