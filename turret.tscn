@@ -5,12 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://bhkov7anihhk7" path="res://focus_area.tscn" id="3_ihb85"]
 
 [node name="Turret" type="Node2D"]
+z_index = 10
 script = ExtResource("1_1rw5o")
 
 [node name="Turret" type="Sprite2D" parent="."]
 texture = ExtResource("1_ijbc8")
 
 [node name="FocusArea" parent="." instance=ExtResource("3_ihb85")]
+z_index = -10
 
 [node name="FireRate" type="Timer" parent="."]
 wait_time = 0.5

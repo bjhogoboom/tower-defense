@@ -28,6 +28,8 @@ func focused_enemy() -> Node2D:
 func _process(delta: float) -> void:
 	indicator.size = size
 	collision_shape_2d.shape.radius = BASE_COLLISION_SHAPE_RADIUS * size
+	# Counteract turret rotation so the focus area is static
+	global_rotation = 0
 	
 func _physics_process(delta: float) -> void:
 	pass
