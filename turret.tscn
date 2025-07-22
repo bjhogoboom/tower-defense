@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://4f7yax5vjte2"]
+[gd_scene load_steps=5 format=3 uid="uid://4f7yax5vjte2"]
 
 [ext_resource type="Script" path="res://turret.gd" id="1_1rw5o"]
 [ext_resource type="Texture2D" uid="uid://bwvfahcuwfbal" path="res://turret.png" id="1_ijbc8"]
 [ext_resource type="PackedScene" uid="uid://bhkov7anihhk7" path="res://focus_area.tscn" id="3_ihb85"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w2gks"]
 
 [node name="Turret" type="Node2D"]
 z_index = 10
@@ -20,6 +22,13 @@ wait_time = 0.5
 [node name="SpawnPoint" type="Node2D" parent="."]
 position = Vector2(0, -8)
 
+[node name="TurretArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TurretArea"]
+shape = SubResource("RectangleShape2D_w2gks")
+
 [connection signal="added_to_queue" from="FocusArea" to="." method="_on_focus_area_added_to_queue"]
 [connection signal="removed_from_queue" from="FocusArea" to="." method="_on_focus_area_removed_from_queue"]
 [connection signal="timeout" from="FireRate" to="." method="_on_fire_rate_timeout"]
+[connection signal="mouse_entered" from="TurretArea" to="." method="_on_turret_area_mouse_entered"]
+[connection signal="mouse_exited" from="TurretArea" to="." method="_on_turret_area_mouse_exited"]

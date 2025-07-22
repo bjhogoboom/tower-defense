@@ -14,6 +14,8 @@ enum Mode {PREVIEW, ACTIVE}
 func _ready() -> void:
 	if mode == Mode.PREVIEW:
 		focus_area.preview()
+	else:
+		focus_area.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -25,7 +27,7 @@ func _physics_process(delta: float) -> void:
 
 	if focus_area.focused_enemy():
 		point_at(focus_area.focused_enemy().global_position)
-
+		
 func point_at(point: Vector2):
 	rotation = point.angle_to_point(position) + Vector2.UP.angle()
 
@@ -57,3 +59,12 @@ func _on_focus_area_added_to_queue(enemy: Enemy) -> void:
 func _on_fire_rate_timeout() -> void:
 	if focus_area.focused_enemy():
 		shoot()
+
+
+func _on_turret_area_mouse_entered() -> void:
+	focus_area.visible = true
+	
+func _on_turret_area_mouse_exited() -> void:
+	focus_area.visible = false
+
+	
