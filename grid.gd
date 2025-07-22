@@ -28,5 +28,6 @@ func should_place_turret(event: InputEvent) -> bool:
 
 func _on_ui_layer_turret_selected() -> void:
 	selected_turret = turret_scene.instantiate()
+	selected_turret.request_ready()
 	selected_turret.preview()
 	add_child(selected_turret)

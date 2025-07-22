@@ -12,7 +12,8 @@ enum Mode {PREVIEW, ACTIVE}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	if mode == Mode.PREVIEW:
+		focus_area.preview()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -37,8 +38,10 @@ func shoot():
 	get_parent().add_child(bullet)
 
 func preview():
-	focus_area.preview()
 	mode = Mode.PREVIEW
+	if !is_node_ready():
+		return
+	focus_area.preview()
 
 func activate():
 	focus_area.activate()
