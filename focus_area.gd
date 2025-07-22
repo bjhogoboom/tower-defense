@@ -1,5 +1,8 @@
+@tool
 class_name FocusArea
 extends Area2D
+
+@export var size: float = 1
 
 var focus_queue: Array[Node2D]
 var mode: Mode = Mode.ACTIVE
@@ -8,6 +11,10 @@ enum Mode {PREVIEW, ACTIVE}
 
 signal added_to_queue(enemy: Enemy)
 signal removed_from_queue(enemy: Enemy)
+
+@onready var indicator: Indicator = $Indicator
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+const BASE_COLLISION_SHAPE_RADIUS = 60
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,7 +26,8 @@ func focused_enemy() -> Node2D:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	indicator.size = size
+	collision_shape_2d.shape.radius = BASE_COLLISION_SHAPE_RADIUS * size
 	
 func _physics_process(delta: float) -> void:
 	pass

@@ -1,5 +1,5 @@
 @tool
-
+class_name Indicator
 extends Node2D
 
 @onready var mask: Sprite2D = $Mask

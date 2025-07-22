@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://focus_area.gd" id="1_gp6fo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w643m"]
-radius = 81.0555
+radius = 60.0
 
 [node name="FocusArea" type="Area2D"]
 collision_mask = 4
