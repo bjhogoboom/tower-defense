@@ -75,7 +75,7 @@ tile_map_data = PackedByteArray("AAD3////AQACAAEAAAD4////AQACAAEAAAD5////AQACAAE
 tile_set = SubResource("TileSet_s8l6l")
 
 [node name="Turret" parent="." instance=ExtResource("1_fpiem")]
-position = Vector2(-18, 57)
+position = Vector2(-50, -21)
 damage = 10.0
 
 [node name="UILayer" parent="." instance=ExtResource("4_rfxcl")]

@@ -18,6 +18,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		coin_purse.remove_gold(turret_cost)
 		selected_turret.activate()
 		selected_turret = null
+	if should_clear_turret(event):
+		selected_turret.queue_free()
+		selected_turret = null
+
+func should_clear_turret(event: InputEvent) -> bool:
+	return selected_turret != null && event.is_action_pressed("ui_cancel")
 
 func should_place_turret(event: InputEvent) -> bool:
 	return event is InputEventMouseButton \
@@ -27,6 +33,8 @@ func should_place_turret(event: InputEvent) -> bool:
 		and coin_purse.gold >= turret_cost
 
 func _on_ui_layer_turret_selected() -> void:
+	if selected_turret != null:
+		return
 	selected_turret = turret_scene.instantiate()
 	selected_turret.request_ready()
 	selected_turret.preview()
