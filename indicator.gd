@@ -13,7 +13,7 @@ const STARTING_SCALE = 0.1
 		size = value
 
 # Called when the node enters the scene tree for the first time.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	apply_size()
 
 func apply_size() -> void:

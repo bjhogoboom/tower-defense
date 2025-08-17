@@ -32,10 +32,6 @@ func actor_setup():
 func set_movement_target(movement_target: Vector2):
 	navigation_agent.target_position = movement_target
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func _physics_process(delta: float) -> void:
 	#position += Vector2.RIGHT * speed * delta
 	if navigation_agent.is_navigation_finished():

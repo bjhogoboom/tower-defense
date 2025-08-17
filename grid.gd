@@ -8,10 +8,6 @@ var selected_turret: Turret
 func _ready() -> void:
 	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func _unhandled_input(event: InputEvent) -> void:
 	if should_place_turret(event):
 		coin_purse.remove_gold(selected_turret.turret.price)

@@ -25,18 +25,14 @@ func focused_enemy() -> Node2D:
 	return focus_queue.front()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	indicator.size = size
 	collision_shape_2d.shape.radius = BASE_COLLISION_SHAPE_RADIUS * size
 	# Counteract turret rotation so the focus area is static
 	global_rotation = 0
 	
-func _physics_process(delta: float) -> void:
-	pass
-
 func _on_area_exited(area: Area2D) -> void:
 	remove_from_focus_queue(area)
-	#fire_rate.stop()
 
 func _on_area_entered(area: Area2D) -> void:
 	if !mode == Mode.ACTIVE: return

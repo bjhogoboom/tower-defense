@@ -18,18 +18,13 @@ func _ready() -> void:
 	timer.set_wait_time(spawn_delay)
 	timer.start()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-	
 func spawn() -> void:
 	var enemy: Enemy = enemy_scene.instantiate()
 	enemy.movement_target_position = goal.position
 	add_child(enemy)
 	enemy.died.connect(_on_enemy_died)
 	
-func _on_enemy_died(enemy: Enemy) -> void:
+func _on_enemy_died(_enemy: Enemy) -> void:
 	coin_purse.add_gold(10)
 
 func _on_timer_timeout() -> void:

@@ -28,11 +28,11 @@ static func new_turret(p_turret: TurretResource = null) -> Turret:
 	return new_turret_scene
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if mode == Mode.PREVIEW:
 		global_position = get_global_mouse_position()
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if !mode == Mode.ACTIVE: return
 
 	if focus_area.focused_enemy():
@@ -59,11 +59,11 @@ func activate():
 	focus_area.activate()
 	mode = Mode.ACTIVE
 
-func _on_focus_area_removed_from_queue(enemy: Enemy):
+func _on_focus_area_removed_from_queue(_enemy: Enemy):
 	if focus_area.focus_queue.is_empty():
 		fire_rate.stop()
 		
-func _on_focus_area_added_to_queue(enemy: Enemy) -> void:
+func _on_focus_area_added_to_queue(_enemy: Enemy) -> void:
 	fire_rate.start()
 
 func _on_fire_rate_timeout() -> void:

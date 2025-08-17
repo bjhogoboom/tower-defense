@@ -14,10 +14,6 @@ func _ready() -> void:
 	ui_layer.set_gold(gold)
 	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func add_gold(delta: int) -> void:
 	gold += delta
 
