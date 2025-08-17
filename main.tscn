@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=4 uid="uid://dp5o1s10k2uo1"]
+[gd_scene load_steps=16 format=4 uid="uid://dp5o1s10k2uo1"]
 
 [ext_resource type="Script" path="res://grid.gd" id="1_fm13y"]
 [ext_resource type="PackedScene" uid="uid://4f7yax5vjte2" path="res://turret.tscn" id="1_fpiem"]
+[ext_resource type="Resource" uid="uid://nvwxnajvrj6o" path="res://turrets/default.tres" id="4_qdssv"]
 [ext_resource type="PackedScene" uid="uid://vsxbhvn4qjl8" path="res://ui_layer.tscn" id="4_rfxcl"]
 [ext_resource type="PackedScene" uid="uid://y2y2mwcq600q" path="res://spawner.tscn" id="5_ok400"]
 [ext_resource type="Script" path="res://coin_purse.gd" id="6_mii76"]
@@ -76,7 +77,7 @@ tile_set = SubResource("TileSet_s8l6l")
 
 [node name="Turret" parent="." instance=ExtResource("1_fpiem")]
 position = Vector2(-50, -21)
-damage = 10.0
+turret = ExtResource("4_qdssv")
 
 [node name="UILayer" parent="." instance=ExtResource("4_rfxcl")]
 
@@ -88,7 +89,7 @@ goal = NodePath("../Goal")
 
 [node name="CoinPurse" type="Node" parent="."]
 script = ExtResource("6_mii76")
-gold = 100
+gold = 300
 
 [node name="Goal" type="Node2D" parent="."]
 position = Vector2(167, 73)

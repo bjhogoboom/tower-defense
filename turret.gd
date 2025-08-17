@@ -2,20 +2,30 @@ class_name Turret
 extends Node2D
 
 var bullet_scene = preload("res://bullet.tscn")
+@export var turret: TurretResource
 @onready var fire_rate: Timer = $FireRate
-@onready var spawn_point = $SpawnPoint
+@onready var bullet_spawn_point = $BulletSpawnPoint
 @onready var focus_area: FocusArea = $FocusArea
-@export var damage = 1.0
+@onready var sprite: Sprite2D = $Sprite
 var mode: Mode = Mode.ACTIVE
 
 enum Mode {PREVIEW, ACTIVE}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	fire_rate.wait_time = turret.fire_delay
+	focus_area.size = turret.focus_radius
+	sprite.modulate = turret.color
 	if mode == Mode.PREVIEW:
 		focus_area.preview()
 	else:
 		focus_area.visible = false
+
+static func new_turret(p_turret: TurretResource = null) -> Turret:
+	var scene: PackedScene = load("res://turret.tscn")
+	var new_turret_scene = scene.instantiate()
+	new_turret_scene.turret = p_turret
+	return new_turret_scene
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -34,9 +44,9 @@ func point_at(point: Vector2):
 func shoot():
 	var bullet = bullet_scene.instantiate()
 	bullet.direction = rotation + Vector2.UP.angle()
-	bullet.spawn_position = spawn_point.global_position
+	bullet.spawn_position = bullet_spawn_point.global_position
 	bullet.spawn_rotation = global_rotation
-	bullet.damage = damage
+	bullet.damage = turret.damage
 	get_parent().add_child(bullet)
 
 func preview():
@@ -59,7 +69,6 @@ func _on_focus_area_added_to_queue(enemy: Enemy) -> void:
 func _on_fire_rate_timeout() -> void:
 	if focus_area.focused_enemy():
 		shoot()
-
 
 func _on_turret_area_mouse_entered() -> void:
 	focus_area.visible = true

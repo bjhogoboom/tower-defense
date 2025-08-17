@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="TurretResource" load_steps=2 format=3 uid="uid://nvwxnajvrj6o"]
+
+[ext_resource type="Script" path="res://turret_resource.gd" id="1_hdo4t"]
+
+[resource]
+script = ExtResource("1_hdo4t")
+damage = 10
+fire_delay = 0.5
+price = 100
+color = Color(0, 0, 0, 1)
+focus_radius = 1

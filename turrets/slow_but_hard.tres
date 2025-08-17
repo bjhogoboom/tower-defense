@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="TurretResource" load_steps=2 format=3 uid="uid://b5urqtjdhnub8"]
+
+[ext_resource type="Script" path="res://turret_resource.gd" id="1_ihu10"]
+
+[resource]
+script = ExtResource("1_ihu10")
+damage = 30
+fire_delay = 1.0
+price = 150
+color = Color(1, 0, 0, 0.8)
+focus_radius = 1

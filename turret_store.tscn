@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://56hlkk1meeaw"]
+[gd_scene load_steps=5 format=3 uid="uid://56hlkk1meeaw"]
 
 [ext_resource type="PackedScene" uid="uid://5likb0he8k8h" path="res://turret_button.tscn" id="1_jchun"]
 [ext_resource type="Script" path="res://turret_store.gd" id="1_sarwl"]
+[ext_resource type="Resource" uid="uid://nvwxnajvrj6o" path="res://turrets/default.tres" id="3_8jk0x"]
+[ext_resource type="Resource" uid="uid://b5urqtjdhnub8" path="res://turrets/slow_but_hard.tres" id="4_452lo"]
 
 [node name="TurretStore" type="VBoxContainer"]
 custom_minimum_size = Vector2(32, 64)
@@ -15,11 +17,13 @@ size_flags_horizontal = 0
 size_flags_vertical = 8
 script = ExtResource("1_sarwl")
 
-[node name="TurretButton" parent="." instance=ExtResource("1_jchun")]
+[node name="Default" parent="." instance=ExtResource("1_jchun")]
 layout_mode = 2
+turret = ExtResource("3_8jk0x")
 
-[node name="TurretButton2" parent="." instance=ExtResource("1_jchun")]
+[node name="SlowButHard" parent="." instance=ExtResource("1_jchun")]
 layout_mode = 2
+turret = ExtResource("4_452lo")
 
-[connection signal="pressed" from="TurretButton" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="TurretButton2" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Default" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="SlowButHard" to="." method="_on_button_pressed"]

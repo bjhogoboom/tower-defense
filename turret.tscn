@@ -10,7 +10,7 @@
 z_index = 10
 script = ExtResource("1_1rw5o")
 
-[node name="Turret" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_ijbc8")
 
 [node name="FocusArea" parent="." instance=ExtResource("3_ihb85")]
@@ -19,7 +19,7 @@ z_index = -10
 [node name="FireRate" type="Timer" parent="."]
 wait_time = 0.5
 
-[node name="SpawnPoint" type="Node2D" parent="."]
+[node name="BulletSpawnPoint" type="Node2D" parent="."]
 position = Vector2(0, -8)
 
 [node name="TurretArea" type="Area2D" parent="."]
