@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dslec6pmlh3bb"]
+
+[ext_resource type="Texture2D" uid="uid://cx5ndk27ttgty" path="res://price-tag.png" id="1_m1drm"]
+[ext_resource type="Script" path="res://price_tag.gd" id="2_3e0pe"]
+
+[sub_resource type="FontVariation" id="FontVariation_d8xp2"]
+
+[sub_resource type="Theme" id="Theme_o6fpl"]
+default_font = SubResource("FontVariation_d8xp2")
+default_font_size = 30
+
+[node name="PriceTag" type="TextureRect"]
+offset_right = 98.0
+offset_bottom = 44.0
+texture = ExtResource("1_m1drm")
+script = ExtResource("2_3e0pe")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PriceText" type="RichTextLabel" parent="CenterContainer"]
+clip_contents = false
+layout_mode = 2
+theme = SubResource("Theme_o6fpl")
+text = "100"
+fit_content = true
+autowrap_mode = 0

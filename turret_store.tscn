@@ -9,20 +9,17 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_top = -64.0
-offset_right = 39.0
+offset_right = 32.0
 grow_vertical = 0
 size_flags_horizontal = 0
 size_flags_vertical = 8
-alignment = 2
 script = ExtResource("1_sarwl")
 
 [node name="TurretButton" parent="." instance=ExtResource("1_jchun")]
 layout_mode = 2
-stretch_mode = 5
 
 [node name="TurretButton2" parent="." instance=ExtResource("1_jchun")]
 layout_mode = 2
-stretch_mode = 5
 
 [connection signal="pressed" from="TurretButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="TurretButton2" to="." method="_on_button_pressed"]

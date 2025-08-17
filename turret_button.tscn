@@ -1,8 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://5likb0he8k8h"]
+[gd_scene load_steps=4 format=3 uid="uid://5likb0he8k8h"]
 
 [ext_resource type="Texture2D" uid="uid://bwvfahcuwfbal" path="res://turret.png" id="1_bp73y"]
+[ext_resource type="Script" path="res://turret_button.gd" id="1_tp37p"]
+[ext_resource type="PackedScene" uid="uid://dslec6pmlh3bb" path="res://price_tag.tscn" id="2_gjlqi"]
 
-[node name="TurretButton" type="TextureButton"]
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(88, 116)
+offset_right = 88.0
+offset_bottom = 115.0
+script = ExtResource("1_tp37p")
+
+[node name="TurretIcon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_right = 44.0
+offset_bottom = 40.0
+scale = Vector2(2, 2)
 size_flags_vertical = 3
-texture_normal = ExtResource("1_bp73y")
+texture = ExtResource("1_bp73y")
 stretch_mode = 4
+
+[node name="PriceTag" parent="." instance=ExtResource("2_gjlqi")]
+layout_mode = 0
+offset_top = 70.0
+offset_right = 88.0
+offset_bottom = 113.0
